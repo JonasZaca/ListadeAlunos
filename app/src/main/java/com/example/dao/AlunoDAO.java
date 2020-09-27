@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import com.example.model.Aluno;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ public class AlunoDAO {
 
     public void salva(Aluno aluno) {
         alunos.add(aluno);
-
     }
 
     public List<Aluno> todos() {

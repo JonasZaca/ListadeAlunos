@@ -9,13 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.ui.livroapp.FormularioAluno">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name="com.example.ui.livroapp.FormularioAluno"
+            android:label="Novo Aluno"/>
 
         <activity android:name="com.example.ui.livroapp.ListaAlunosActivity">
             <intent-filter>

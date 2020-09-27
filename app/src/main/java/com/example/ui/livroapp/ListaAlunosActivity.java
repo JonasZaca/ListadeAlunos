@@ -10,37 +10,46 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dao.AlunoDAO;
 import com.example.livroapp.R;
-import com.example.model.Aluno;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ListaAlunosActivity extends AppCompatActivity {
+
+    private FloatingActionButton adcAlunos;
+    private final AlunoDAO dao = new AlunoDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_aluno);
 
-        AlunoDAO dao = new AlunoDAO();
+        adcAlunos = findViewById(R.id.floatAdcAluno);
 
-        //Linkando a Lista criada no Layout
-        ListView listaAlunos = findViewById(R.id.lstAlunos);
-        // criando o Adapter para jogar os alunos na lista
-        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
+        configuraFABNovoAluno(adcAlunos);
+    }
 
-        FloatingActionButton adcAlunos = findViewById(R.id.floatAdcAluno);
-
+    private void configuraFABNovoAluno(FloatingActionButton adcAlunos) {
         adcAlunos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent formulario = new Intent(ListaAlunosActivity.this, FormularioAluno.class);
-                startActivity(formulario);
+                abreFormularioAluno();
             }
         });
+    }
 
+    private void abreFormularioAluno() {
+        startActivity(new Intent(this, FormularioAluno.class));
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        configuraLista();
+    }
+
+    private void configuraLista() {
+        //Linkando a Lista criada no Layout
+        ListView listaAlunos = findViewById(R.id.lstAlunos);
+        // criando o Adapter para inserir os alunos na lista
+        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
     }
 }
