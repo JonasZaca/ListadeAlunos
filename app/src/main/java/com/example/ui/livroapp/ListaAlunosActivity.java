@@ -8,7 +8,9 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dao.AlunoDAO;
 import com.example.livroapp.R;
+import com.example.model.Aluno;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -22,12 +24,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_aluno);
 
-        //Iniciando uma lista
-        List<String> alunos = new ArrayList<>(Arrays.asList("Jonas", "José", "Maria", "Ana Alice"));
+        AlunoDAO dao = new AlunoDAO();
+
         //Linkando a Lista criada no Layout
         ListView listaAlunos = findViewById(R.id.lstAlunos);
         // criando o Adapter para jogar os alunos na lista
-        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
+        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
 
         FloatingActionButton adcAlunos = findViewById(R.id.floatAdcAluno);
 
